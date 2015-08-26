@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Chat!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
@@ -13,8 +16,31 @@
     <script src="/js/controllers.js" type="text/javascript"></script>
   </head>
   <body ng-controller="ChatController">
-
-    
+    <div class="container">
+      <h1>AngularFire Chat!</h1>
+      <div class="row message" ng-repeat="message in messages">
+        <div class="col-md-3">
+          <img class='avatar' ng-src="{{message.avatarUrl}}" alt="image">
+        </div>
+        <div class="col-md-9">
+          <strong>{{message.username}}</strong>
+          <p class='text' ng-hide="editForm" ng-dblclick="editMessage()">{{message.content}}</p>
+          <form ng-show="editForm" ng-submit="updateMessage()">
+            <input type="text" name="messageContent" ng-model="messageContent" ng-value='message.content'>
+          </form>
+          <a class='deleteBtn' ng-click="removeMessage(message)">Delete</a>
+        </div>
+      </div>
+      <form class="form" ng-submit="newMessage()">
+        <label for="user">Name</label>
+        <input class='form-control' id='user' type="text" name="username" ng-model="username">
+        <label for="url">Avatar URL</label>
+        <input class='form-control' id='url' type="url" name="avatarUrl" ng-model="avatarUrl">
+        <label for="content">Message</label>
+        <input class='form-control' id='content' type="text" name="content" ng-model="content">
+        <button class='btn btn-success form-control' type="submit" name="button">Post</button>
+      </form>
+    </div>
 
   </body>
 </html>
