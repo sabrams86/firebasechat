@@ -14,7 +14,6 @@ app.controller('ChatController', ['$scope', '$firebaseArray', function ($scope, 
     this.editForm = !this.editForm;
   }
   $scope.updateMessage = function (message) {
-    this.message.content = this.messageContent;
     $scope.messages.$save(this.message);
     this.editForm = false;
   }

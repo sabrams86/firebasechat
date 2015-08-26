@@ -26,7 +26,7 @@
           <strong>{{message.username}}</strong>
           <p class='text' ng-hide="editForm" ng-dblclick="editMessage()">{{message.content}}</p>
           <form ng-show="editForm" ng-submit="updateMessage()">
-            <input type="text" name="messageContent" ng-model="messageContent" ng-value='message.content'>
+            <input type="text" name="messageContent" ng-model="message.content" onfocus="this.select()" autofocus>
           </form>
           <a class='deleteBtn' ng-click="removeMessage(message)">Delete</a>
         </div>
